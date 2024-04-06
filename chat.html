@@ -20,6 +20,9 @@
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
 
+        // Retrieve stored messages
+        const storedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+
         // Function to add a new message to the chat
         function addMessage(message) {
             const messageElement = document.createElement('div');
@@ -30,11 +33,17 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+        // Display stored messages
+        storedMessages.forEach(addMessage);
+
         // Event listener for sending messages
         sendButton.addEventListener('click', () => {
             const message = messageInput.value.trim();
             if (message !== '') {
                 addMessage(message);
+                // Store message in localStorage
+                storedMessages.push(message);
+                localStorage.setItem('messages', JSON.stringify(storedMessages));
                 messageInput.value = ''; // Clear input field after sending message
             }
         });

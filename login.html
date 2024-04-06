@@ -9,12 +9,32 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form action="login.php" method="post">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account yet? <a href="sign_up.html">Signup here</a>.</p>
+        <p>Don't have an account yet? <a href="signup.html">Signup here</a>.</p>
     </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+
+        // Check if user is already logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            window.location.href = 'chat.html';
+        }
+
+        // Event listener for form submission
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // Simulated login functionality (replace with actual backend code)
+            // For demonstration, just set loggedIn status in localStorage
+            localStorage.setItem('loggedIn', 'true');
+            window.location.href = 'chat.html';
+        });
+    </script>
 </body>
 </html>

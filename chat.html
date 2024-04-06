@@ -14,5 +14,30 @@
         <button id="sendButton">Send</button>
         <p>Not logged in? <a href="login.html">Login here</a>.</p>
     </div>
+
+    <script>
+        const messagesContainer = document.getElementById('messagesContainer');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Function to add a new message to the chat
+        function addMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = message;
+            messagesContainer.appendChild(messageElement);
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Event listener for sending messages
+        sendButton.addEventListener('click', () => {
+            const message = messageInput.value.trim();
+            if (message !== '') {
+                addMessage(message);
+                messageInput.value = ''; // Clear input field after sending message
+            }
+        });
+    </script>
 </body>
 </html>
